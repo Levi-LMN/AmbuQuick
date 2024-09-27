@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmbuQuick - Download App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        
+        .download-options {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .download-button {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .download-button:hover {
+            background-color: #c0392b;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #e74c3c;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <header>
+        <div class="container">
+            <h1 class="logo"><i class="fa-solid fa-ambulance" aria-hidden="true"></i> AmbuQuick</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Why Us?</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="container">
+            <h2>Download AmbuQuick App</h2>
+            <p>Get quick access to ambulance services right from your smartphone. Download our app now and be prepared for any emergency.</p>
+            <div class="download-options">
+                <a href="#" class="download-button" aria-label="Download on the App Store">
+                    <i class="fab fa-apple" aria-hidden="true"></i> App Store
+                </a>
+                <a href="#" class="download-button" aria-label="Get it on Google Play">
+                    <i class="fab fa-google-play" aria-hidden="true"></i> Google Play
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AmbuQuick. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmbuQuick - Ambulance Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        .ambulance-details {
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .ambulance-details h3 {
+            color: #e74c3c;
+            margin-top: 0;
+        }
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <header>
+        <div class="container">
+            <h1 class="logo"><i class="fa-solid fa-ambulance" aria-hidden="true"></i> AmbuQuick</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html">Why Us?</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main id="main">
+        <div class="container">
+            <h2>Ambulance Details</h2>
+            <div class="ambulance-details">
+                <h3>Your ambulance is on the way!</h3>
+                <p>Driver: <span id="driver-name"></span></p>
+                <p>Vehicle Registration: <span id="vehicle-reg"></span></p>
+                <p>Estimated Time of Arrival: <span id="eta"></span></p>
+                <p>Distance: <span id="distance"></span></p>
+                <p>Cost: KES <span id="cost"></span></p>
+            </div>
+            <div class="countdown">
+                <p>Estimated arrival in: <span id="countdown"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AmbuQuick. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const kenyanNames = ["John Mwangi", "Mary Wanjiku", "James Otieno", "Fatuma Hassan", "Peter Njoroge", "Grace Akoth"];
+        const randomDriverName = kenyanNames[Math.floor(Math.random() * kenyanNames.length)];
+
+        function generateKenyanPlate() {
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const firstLetters = letters[Math.floor(Math.random() * letters.length)] + letters[Math.floor(Math.random() * letters.length)];
+            const numbers = Math.floor(100 + Math.random() * 900);
+            const lastLetter = letters[Math.floor(Math.random() * letters.length)];
+            return `K${firstLetters} ${numbers}${lastLetter}`;
+        }
+
+        let distance = (Math.random() * 10 + 1).toFixed(2);
+        distance = parseFloat(distance);
+        const eta = Math.floor(Math.random() * 20 + 5);
+
+        const costPerKm = 89;
+        const totalCost = (distance * costPerKm).toFixed(2);
+
+        document.getElementById('driver-name').textContent = randomDriverName;
+        document.getElementById('vehicle-reg').textContent = generateKenyanPlate();
+        document.getElementById('distance').textContent = `${distance} km`;
+        document.getElementById('cost').textContent = totalCost;
+
+        let remainingTime = eta * 60;
+        const initialDistance = distance;
+        const distancePerSecond = initialDistance / remainingTime;
+
+        function updateCountdown() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+
+            document.getElementById('countdown').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('eta').textContent = `${minutes} minutes`;
+
+            distance = Math.max(0, (distance - distancePerSecond).toFixed(2));
+            document.getElementById('distance').textContent = `${distance} km`;
+
+            if (remainingTime > 0) {
+                remainingTime--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                document.getElementById('countdown').textContent = "Ambulance has arrived!";
+                document.getElementById('eta').textContent = "0 minutes";
+            }
+        }
+
+        updateCountdown();
+    </script>
+</body>
+</html>

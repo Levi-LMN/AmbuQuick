@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Verification - AmbuQuick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            padding: 1em;
+        }
+
+        h1 {
+            margin-bottom: 1em;
+            color: #ff4747;
+        }
+
+        .container {
+            background: white;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        input {
+            width: 100%;
+            padding: 1em;
+            margin: 1em 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #ff4747;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 1em;
+            background-color: #ff4747;
+            color: white;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff3030;
+        }
+
+        .spinner {
+            display: none;
+            margin-top: 1em;
+        }
+
+        .verified-message {
+            display: none;
+            margin-top: 1em;
+            font-size: 1.2em;
+            color: #28a745;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Loader styles */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff4747;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 1em auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .timer {
+            margin-top: 1em;
+            color: #ff4747;
+            font-weight: bold;
+        }
+
+        .error-message {
+            color: #ff3030;
+            font-size: 0.9em;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Phone Verification</h1>
+        <input type="text" id="phoneNumber" placeholder="Enter your phone number" required aria-label="Phone number">
+        <button id="sendCodeButton">Send Code</button>
+        
+        <div id="loader" class="hidden">
+            <div class="loader"></div>
+            <p>Sending code...</p>
+        </div>
+
+        <div id="codeSection" class="hidden">
+            <input type="text" id="verificationCode" placeholder="Enter verification code" required aria-label="Verification code">
+            <button id="verifyButton">Verify</button>
+            <p id="timer" class="timer hidden">Resend code in <span id="countdown">30</span> seconds</p>
+        </div>
+
+        <div class="spinner" id="spinner">🔄 Verifying...</div>
+        <div class="verified-message" id="verifiedMessage">Phone verified! You can now request an ambulance.</div>
+        <div class="error-message hidden" id="errorMessage"></div>
+    </div>
+
+    <script>
+        let countdownInterval;
+    
+        document.getElementById('sendCodeButton').addEventListener('click', function () {
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+    
+            // Basic phone number validation
+            if (!phoneNumber) {
+                document.getElementById('errorMessage').innerText = "Please enter a valid phone number.";
+                document.getElementById('errorMessage').classList.remove('hidden');
+                return;
+            } else {
+                document.getElementById('errorMessage').classList.add('hidden');
+            }
+    
+            // Hide the send code button
+            this.style.display = 'none';
+            // Show loader
+            document.getElementById('loader').classList.remove('hidden');
+    
+            // Simulate sending code
+            setTimeout(function () {
+                // Hide loader and show the code input section
+                document.getElementById('loader').classList.add('hidden');
+                document.getElementById('codeSection').classList.remove('hidden');
+    
+                // Start countdown timer
+                startCountdown();
+            }, 2000); // Simulate a 2-second delay for sending code
+        });
+    
+        function startCountdown() {
+            let timeLeft = 30;
+            document.getElementById('timer').classList.remove('hidden');
+    
+            countdownInterval = setInterval(function () {
+                timeLeft--;
+                document.getElementById('countdown').innerText = timeLeft;
+    
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('timer').classList.add('hidden');
+                    document.getElementById('sendCodeButton').style.display = 'block'; // Reshow the button to resend code
+                }
+            }, 1000);
+        }
+    
+        document.getElementById('verifyButton').addEventListener('click', function () {
+            const spinner = document.getElementById('spinner');
+            const verifiedMessage = document.getElementById('verifiedMessage');
+            const verificationCode = document.getElementById('verificationCode').value.trim();
+    
+            // Basic verification code validation
+            if (!verificationCode) {
+                document.getElementById('errorMessage').innerText = "Please enter the verification code.";
+                document.getElementById('errorMessage').classList.remove('hidden');
+                return;
+            } else {
+                document.getElementById('errorMessage').classList.add('hidden');
+            }
+    
+            // Show the spinner
+            spinner.style.display = 'block';
+            verifiedMessage.style.display = 'none';
+    
+            // Simulate an API call for verification
+            setTimeout(function () {
+                spinner.style.display = 'none';
+                verifiedMessage.style.display = 'block';
+                document.getElementById('codeSection').classList.add('hidden'); // Hide the code section after verification
+                clearInterval(countdownInterval); // Clear countdown if verification is successful
+    
+                // Redirect after verification
+                setTimeout(() => {
+                    window.location.href = 'ambulance_selection.html'; // Redirect to ambulance selection page
+                }, 2000); // 2-second delay before redirecting
+            }, 3000); // Simulates a 3-second verification time
+        });
+    </script>
+    
+</body>
+
+</html>

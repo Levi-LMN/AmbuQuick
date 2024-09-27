@@ -1,0 +1,411 @@
+/* General Reset and Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #ff4747;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Header Styling */
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    color: #ff4747;
+    outline: 2px solid #ff4747;
+    outline-offset: 2px;
+}
+
+/* Hero Section */
+.hero {
+    background: url('ambulance.jpeg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 10em 0;
+    position: relative;
+    z-index: 1;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.hero h2 {
+    font-size: 3.5em;
+    margin-bottom: 0.5em;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 2em;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.8em 2em;
+    background-color: #ff4747;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 0.5em;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover,
+.btn:focus {
+    background-color: #ff3030;
+    transform: translateY(-3px);
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.btn-secondary {
+    background-color: #007bff;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background-color: #0056b3;
+}
+
+/* Section Styling */
+section {
+    padding: 4em 0;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
+
+/* Features Section */
+.feature-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.feature-box {
+    width: 250px;
+    margin: 1em 0;
+    text-align: center;
+    padding: 2em;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature-box i {
+    font-size: 3em;
+    color: #ff4747;
+    margin-bottom: 0.5em;
+}
+
+/* How It Works Section */
+.steps {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.step {
+    width: 250px;
+    margin: 1em 0;
+    text-align: center;
+}
+
+.step i {
+    font-size: 3em;
+    color: #ff4747;
+    margin-bottom: 0.5em;
+}
+
+/* Testimonials Section */
+.testimonial-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.testimonial {
+    width: 300px;
+    margin: 1em;
+    padding: 1.5em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-style: italic;
+    color: #555;
+}
+
+/* Contact Section */
+.contact-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+.contact-info,
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-info h3,
+.contact-form h3 {
+    font-size: 1.8em;
+    margin-bottom: 1em;
+}
+
+.contact-details p {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+.contact-details i {
+    color: #ff4747;
+    margin-right: 0.5em;
+}
+
+.social-icons-contact a {
+    color: #555;
+    font-size: 1.8em;
+    margin: 0 0.5em;
+    transition: color 0.3s ease;
+}
+
+.social-icons-contact a:hover,
+.social-icons-contact a:focus {
+    color: #ff4747;
+    outline: 2px solid #ff4747;
+    outline-offset: 2px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1em;
+    margin: 0.8em 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 1em;
+    background-color: #ff4747;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contact-form button:hover,
+.contact-form button:focus {
+    background-color: #ff3030;
+    outline: 2px solid #333;
+    outline-offset: 2px;
+}
+
+/* Footer Section */
+/* Add this to the existing CSS */
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto; /* Add this to make the footer sticky */
+    background-color: #333;
+    color: white;
+    padding: 2em 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    font-size: 1.8em;
+}
+
+.footer-links a {
+    margin: 0 1em;
+    text-decoration: none;
+    color: white;
+}
+
+.footer-links a:hover,
+.footer-links a:focus {
+    color: #ff4747;
+    outline: 2px solid #ff4747;
+    outline-offset: 2px;
+}
+
+/* Media Queries */
+/* Media Queries */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-container,
+    .steps,
+    .testimonial-container,
+    .contact-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero h2 {
+        font-size: 2.5em;
+    }
+
+    .feature-box,
+    .step,
+    .testimonial,
+    .contact-info,
+    .contact-form {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        margin-top: 1em;
+    }
+
+    .footer-links a {
+        display: block;
+        margin: 0.5em 0;
+    }
+}
+
+/* Accessibility Enhancements */
+:focus {
+    outline: 2px solid #ff4747;
+    outline-offset: 2px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    body {
+        background-color: #000;
+        color: #fff;
+    }
+
+    a, button {
+        color: #ff0;
+    }
+
+    .feature-box, .testimonial {
+        background-color: #333;
+        color: #fff;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
