@@ -101,7 +101,9 @@ nav ul li a:focus {
     font-size: 1.3em;
     margin-bottom: 2em;
 }
-
+.hero img {
+    alt: "An ambulance vehicle";
+}
 /* Buttons */
 .btn {
     padding: 0.8em 2em;
