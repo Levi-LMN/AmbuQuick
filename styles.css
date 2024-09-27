@@ -284,7 +284,7 @@ section h2 {
 }
 
 /* Footer Section */
-/* Add this to the existing CSS */
+
 html {
     height: 100%;
 }
@@ -296,7 +296,7 @@ body {
 }
 
 footer {
-    margin-top: auto; /* Add this to make the footer sticky */
+    margin-top: auto; 
     background-color: #333;
     color: white;
     padding: 2em 0;
@@ -325,7 +325,7 @@ footer {
     outline-offset: 2px;
 }
 
-/* Media Queries */
+
 /* Media Queries */
 @media (max-width: 768px) {
     nav ul {
